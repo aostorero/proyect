@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const person = require('../models/Person');
 const peopleController = require('../controllers/peopleController');
+const userController = require('../controllers/userController');
 //-------------------people specific routes
 //get all people in db
 router.get("/people", peopleController.getPeople);
@@ -13,11 +13,9 @@ router.post("/people", peopleController.createPerson);
 router.put("/people/:id", peopleController.updatePerson);
 //delete a specific person in db
 router.delete("/people/:id", peopleController.deletePerson);
-//-----other routes
-/*router.get("/", (req, res) => {
-    res.json({
-        message: "si anda ctm"
-    });
-});*/
+//--------------------login/register routes
+router.post("/register", userController.register);
+
+router.post("/login", userController.authenticate);
 
 module.exports = router;
