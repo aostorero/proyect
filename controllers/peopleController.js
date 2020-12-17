@@ -1,9 +1,33 @@
 const person = require('../models/Person');
 
 exports.getPeople = async (req, res) => {
-    const people = await person.findAll();
+    let people;
+    let name = req.query.name;
+    let birthday = req.query.birthday;
+    let sex = req.query.sex;
+    let home_address = req.query.home_address;
+    //object where the 'where' used to get specific results from db.
+    var options = {where: {}};
+    //checks if there are requests to filter.  
+    if (name) {
+        options.where.name = name
+    }
+    if (birthday) {
+        options.where.birthday = birthday
+    }
+    if (sex) {
+        options.where.sex = sex
+    }
+    if (home_address) {
+        options.where.home_address = home_address
+    }
+    people = await person.findAll(options);
+    
     res.json(people);
 }
+    
+
+
 
 exports.getPerson = async (req, res) => {
     const result = await person.findAll({
