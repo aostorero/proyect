@@ -1,3 +1,3 @@
 # proyect
 training proyect
-por ahora solo hay un crud basico, sin login ni paginamiento.
+Basic RESTful api, with crud and login
